@@ -70,7 +70,7 @@ def train_model(epochs=1):
     model = load_model(model_filename)
     print ("Eval test:")
     model.evaluate(test_iterator)
-    print ("5516Eval val:")
+    print ("Eval val:")
     model.evaluate(val_iterator)
 
 train_model(epochs=100)
