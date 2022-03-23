@@ -1,5 +1,6 @@
 from keras_efficientnets import EfficientNetB0
 import os
+import sys
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Model,load_model
@@ -30,10 +31,14 @@ def get_iterator(data_folder, batch_size=32, target_size=224, shuffle=True):
 def train_model(epochs=1):
     input_size = (224,224,3)
 
-    if platform == 'linux':
+    if len(sys.argv)>1:
+        data_dir = sys.argv[1]
+    elif platform == 'linux':
         data_dir = r"/home/bernardas/IsKnown_Images_ForEfficientNet/Bal_v14/Ind-0"
     else:
         data_dir=r"c:/IsKnown_Images_IsVisible/Bal_v14/Ind-0"
+    print ("test.py data_dir={}".format(data_dir))
+
     data_dir_train = os.path.join(data_dir, "Train")
     data_dir_val = os.path.join(data_dir, "Val")
     data_dir_test = os.path.join(data_dir, "Test")
